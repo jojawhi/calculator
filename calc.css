@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+:root {
+    --orange-1: hsl(39, 100%, 57%);
+    --orange-2: hsl(39, 90%, 60%);
+    --blue-1: hsl(182, 100%, 55%);
+    --white-1: hsl(0, 0%, 90%);
+    --grey-1: hsl(0, 0%, 10%);
+    --grey-2: hsl(0, 0%, 30%);
+    --grey-3: hsl(0, 0%, 50%);
+    --grey-4: hsl(0, 0%, 15%);
+    --grey-5: hsl(0, 0%, 5%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#pageContainer {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--grey-3);
+    font-family: Rubik, sans-serif;
+}
+
+#calcContainer {
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    grid-template-rows: 20% 1fr;
+    grid-gap: 0.5rem;
+    grid-template-areas: 
+        "display display"
+        "numbers operators";
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background: var(--grey-3);
+}
+
+#displayContainer {
+    grid-area: display;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    background: var(--grey-1);
+    box-shadow: 
+        -5px -4px 2px var(--grey-4) inset,
+        5px 5px 10px var(--grey-4) inset;
+}
+
+#displayText {
+    margin-bottom: 5px;
+    transform: scaley(2);
+    color: var(--orange-1);
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 3px var(--white-1),
+        0 0 4px var(--orange-1);
+}
+
+#numberContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+        ".     .     clear"
+        "seven eight nine"
+        "four  five  six"
+        "one   two   three"
+        ".     zero  point"
+        ;
+    grid-gap: 5px;
+    grid-area: numbers;
+    height: 100%;
+    width: auto;
+    margin: 0;
+    padding: 5px;
+    background: var(--grey-2);
+}
+
+#operatorContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 5px;
+    grid-area: operators;
+    height: 100%;
+    width: auto;
+    margin: 0;
+    padding: 5px;
+    background: var(--grey-2);
+}
+
+.innerContainer {
+    border-radius: 10px;
+}
+
+.button {
+    border: none;
+    border-radius: 10px;
+}
+
+.numberButton {
+    background: var(--grey-1);
+    color: var(--blue-1);
+    font-size: 2.5rem;
+    text-shadow: 
+        0 0 2px var(--white-1),
+        0 0 3px var(--blue-1);
+    transition: 0.2s;
+}
+
+.numberButton:hover,
+.numberButton:focus {
+    text-shadow: 
+        0 0 4px var(--white-1),
+        0 0 5px var(--blue-1);
+}
+
+.numberButton:active {
+    transform: scale(0.95);
+    background: var(--grey-5);
+    box-shadow: 2px -2px 0 var(--grey-3);
+    text-shadow: 
+        0 0 5px var(--white-1),
+        0 0 6px var(--blue-1);
+}
+
+.operatorButton {
+    background: var(--grey-1);
+    color: var(--orange-1);
+    font-size: 2.5rem;
+    text-shadow: 
+        0 0 2px var(--white-1),
+        0 0 3px var(--orange-1);
+    transition: 0.2s;
+}
+
+.operatorButton:hover,
+.operatorButton:focus {
+    text-shadow: 
+        0 0 4px var(--white-1),
+        0 0 5px var(--orange-1);
+}
+
+.operatorButton:active {
+    transform: scale(0.95);
+    background: var(--grey-5);
+    box-shadow: 2px -2px 0 var(--grey-3);
+    text-shadow: 
+        0 0 5px var(--white-1),
+        0 0 6px var(--orange-1);
+}
+
+#zeroButton {
+    grid-area: zero;
+}
+
+#oneButton {
+    grid-area: one;
+}
+
+#twoButton {
+    grid-area: two;
+}
+
+#threeButton {
+    grid-area: three;
+}
+
+#fourButton {
+    grid-area: four;
+}
+
+#fiveButton {
+    grid-area: five;
+}
+
+#sixButton {
+    grid-area: six;
+}
+
+#sevenButton {
+    grid-area: seven;
+}
+
+#eightButton {
+    grid-area: eight;
+}
+
+#nineButton {
+    grid-area: nine;
+}
+
+#dotButton {
+    grid-area: point;
+}
+
+#clearButton {
+    grid-area: clear;
+}
+
+#addButton {
+    font-size: 4rem;
+}
+
+#subButton {
+    font-size: 4rem;
+}
+
+#multButton {
+    font-size: 3rem;
+}
+
+#divButton {
+    font-size: 3rem;
+}
+
+#equButton {
+    font-size: 3.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+    #pageContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #calcContainer {
+        height: 800px;
+        width: 500px;
+        background: var(--grey-1);
+        border-radius: 12px;
+    }
+
+    #displayText {
+        transform: scaley(2);
+        font-size: 2rem;
+        letter-spacing: 6px;
+    }
+    
+}
