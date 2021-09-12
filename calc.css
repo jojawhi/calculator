@@ -61,7 +61,7 @@ body,
         5px 5px 10px var(--grey-4) inset;
 }
 
-#displayText {
+#displayEquation {
     margin-bottom: 5px;
     transform: scaley(2);
     color: var(--orange-1);
@@ -206,7 +206,7 @@ body,
     grid-area: nine;
 }
 
-#dotButton {
+#pointButton {
     grid-area: point;
 }
 
@@ -226,7 +226,7 @@ body,
     font-size: 3rem;
 }
 
-#divButton {
+#diviButton {
     font-size: 3rem;
 }
 
@@ -248,7 +248,7 @@ body,
         border-radius: 12px;
     }
 
-    #displayText {
+    #displayEquation {
         transform: scaley(2);
         font-size: 2rem;
         letter-spacing: 6px;

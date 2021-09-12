@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="calc.css">
-    <script src="calc.js"></script>
+    <script src="calc.js" defer></script>
     <title>Calculator</title>
 </head>
 <body>
     <div id="pageContainer">
         <div id="calcContainer">
             <div id="displayContainer" class="innerContainer">
-                <p id="displayText"></p>
+                <p id="displayEquation"></p>
             </div>
             <div id="numberContainer" class="innerContainer">
                 <button id="clearButton" class="operatorButton button">C</button>
@@ -22,17 +22,17 @@
                 <button id="fourButton" class="numberButton button" value="4">4</button>
                 <button id="fiveButton" class="numberButton button" value="5">5</button>
                 <button id="sixButton" class="numberButton button" value="6">6</button>
-                <button id="oneButton" class="numberButton button" value="1">1</button>
+                <button id="oneButton" class="numberButton button">1</button>
                 <button id="twoButton" class="numberButton button" value="2">2</button>
                 <button id="threeButton" class="numberButton button" value="3">3</button>
-                <button id="zeroButton" class="numberButton button" value="0">0</button>
-                <button id="dotButton" class="numberButton button" value=".">.</button>
+                <button id="zeroButton" class="numberButton button">0</button>
+                <button id="pointButton" class="numberButton button" value=".">.</button>
             </div>
             <div id="operatorContainer" class="innerContainer">
                 <button id="addButton" class="operatorButton button">+</button>
                 <button id="subButton" class="operatorButton button">-</button>
                 <button id="multButton" class="operatorButton button">x</button>
-                <button id="divButton" class="operatorButton button">/</button>
+                <button id="diviButton" class="operatorButton button">/</button>
                 <button id="equButton" class="operatorButton button">=</button>
             </div>
         </div>
