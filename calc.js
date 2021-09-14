@@ -285,3 +285,9 @@ clearButton.addEventListener("click", () => {
     diviClicked = false;
     
 })
+
+// To-do
+
+/*
+- figure out how to allow chaining operators
+*/
