@@ -37,6 +37,12 @@ let diviClicked = false;
 
 zeroButton.addEventListener("click", () => {
     
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
     if (firstOperand != "") {
         secondOperand += "0";
         displayEquation.textContent += "0";
@@ -48,23 +54,29 @@ zeroButton.addEventListener("click", () => {
 
 oneButton.addEventListener("click", () => {
 
-    if (typeof result === Number) {
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
         displayEquation.textContent = "";
     }
-
+    
     if (firstOperand != "") {
         secondOperand += "1";
         displayEquation.textContent += "1";
     } else {
         displayEquation.textContent += "1";
     }
-
-   
-
+ 
 });
 
 twoButton.addEventListener("click", () => {
 
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
     if (firstOperand != "") {
         secondOperand += "2";
         displayEquation.textContent += "2";
@@ -75,35 +87,137 @@ twoButton.addEventListener("click", () => {
 });
 
 threeButton.addEventListener("click", () => {
-    displayEquation.textContent += "3";
+
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "3";
+        displayEquation.textContent += "3";
+    } else {
+        displayEquation.textContent += "3";
+    }
+
 });
 
 fourButton.addEventListener("click", () => {
-    displayEquation.textContent += "4";
+    
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "4";
+        displayEquation.textContent += "4";
+    } else {
+        displayEquation.textContent += "4";
+    }
+
 });
 
 fiveButton.addEventListener("click", () => {
-    displayEquation.textContent += "5";
+    
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "5";
+        displayEquation.textContent += "5";
+    } else {
+        displayEquation.textContent += "5";
+    }
+
 });
 
 sixButton.addEventListener("click", () => {
-    displayEquation.textContent += "6";
+    
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "6";
+        displayEquation.textContent += "6";
+    } else {
+        displayEquation.textContent += "6";
+    }
+
 });
 
 sevenButton.addEventListener("click", () => {
-    displayEquation.textContent += "7";
+    
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "7";
+        displayEquation.textContent += "7";
+    } else {
+        displayEquation.textContent += "7";
+    }
+
 });
 
 eightButton.addEventListener("click", () => {
-    displayEquation.textContent += "8";
+    
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "8";
+        displayEquation.textContent += "8";
+    } else {
+        displayEquation.textContent += "8";
+    }
+
 });
 
 nineButton.addEventListener("click", () => {
-    displayEquation.textContent += "9";
+    
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += "9";
+        displayEquation.textContent += "9";
+    } else {
+        displayEquation.textContent += "9";
+    }
+
 });
 
 pointButton.addEventListener("click", () => {
-    displayEquation.textContent += ".";
+    if (displayResult.textContent != "") {
+        result = "";
+        displayResult.textContent = "";
+        displayEquation.textContent = "";
+    }
+    
+    if (firstOperand != "") {
+        secondOperand += ".";
+        displayEquation.textContent += ".";
+    } else {
+        displayEquation.textContent += ".";
+    }
 });
 
 addButton.addEventListener("click", () => {
@@ -146,12 +260,15 @@ equButton.addEventListener("click", () => {
 
     displayResult.textContent = result;
 
-    console.log(typeof result);
+    console.log(secondOperand);
 
     addClicked = false;
     subClicked = false;
     multClicked = false;
     diviClicked = false;
+
+    firstOperand = "";
+    secondOperand = "";
     
 })
 
