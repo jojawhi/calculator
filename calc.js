@@ -20,8 +20,12 @@ const multButton = document.querySelector("#multButton");
 const diviButton = document.querySelector("#diviButton");
 const equButton = document.querySelector("#equButton");
 
+
+
+
 displayEquation.textContent = "";
 displayResult.textContent = "";
+
 
 
 let firstOperand = "";
@@ -223,30 +227,30 @@ pointButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
     addClicked = true;
     firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += "+";
+    displayEquation.textContent += " + ";
     console.log(firstOperand);
 })
 
 subButton.addEventListener("click", () => {
     subClicked = true;
     firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += "-";
+    displayEquation.textContent += " - ";
 })
 
 multButton.addEventListener("click", () => {
     multClicked = true;
     firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += "*";
+    displayEquation.textContent += " x ";
 })
 
 diviButton.addEventListener("click", () => {
     diviClicked = true;
     firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += "/";
+    displayEquation.textContent += " / ";
 })
 
 equButton.addEventListener("click", () => {
-    displayEquation.textContent += " =";
+    displayEquation.textContent += " = ";
 
     if (addClicked === true) {
         result = Number(firstOperand) + Number(secondOperand);
@@ -289,5 +293,8 @@ clearButton.addEventListener("click", () => {
 // To-do
 
 /*
-- figure out how to allow chaining operators
+- figure out how to allow chaining operators, look into arrays for this
+// RegEx from https://stackoverflow.com/questions/62712250/chaining-multiple-operations-in-a-javascript-calculator
+// let calculation = str.match(/\d+\.\d+|\d+|[^0-9]/g);
+
 */

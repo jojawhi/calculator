@@ -15,19 +15,24 @@
                 <p id="displayEquation"></p>
                 <p id="displayResult"></p>
             </div>
-            <div id="numberContainer" class="innerContainer">
-                <button id="clearButton" class="operatorButton button">C</button>
-                <button id="sevenButton" class="numberButton button" value="7">7</button>
-                <button id="eightButton" class="numberButton button" value="8">8</button>
-                <button id="nineButton" class="numberButton button" value="9">9</button>
-                <button id="fourButton" class="numberButton button" value="4">4</button>
-                <button id="fiveButton" class="numberButton button" value="5">5</button>
-                <button id="sixButton" class="numberButton button" value="6">6</button>
-                <button id="oneButton" class="numberButton button">1</button>
-                <button id="twoButton" class="numberButton button" value="2">2</button>
-                <button id="threeButton" class="numberButton button" value="3">3</button>
-                <button id="zeroButton" class="numberButton button">0</button>
-                <button id="pointButton" class="numberButton button" value=".">.</button>
+            <div id="mainButtonContainer" class="innerContainer">
+                <div id="deleteClearContainer">
+                    <button id="deleteButton" class="operatorButton button deleteClear">DEL</button>
+                    <button id="clearButton" class="operatorButton button deleteClear">CLR</button>
+                </div>
+                <div id="numberButtonContainer">
+                    <button id="sevenButton" class="numberButton button" value="7">7</button>
+                    <button id="eightButton" class="numberButton button" value="8">8</button>
+                    <button id="nineButton" class="numberButton button" value="9">9</button>
+                    <button id="fourButton" class="numberButton button" value="4">4</button>
+                    <button id="fiveButton" class="numberButton button" value="5">5</button>
+                    <button id="sixButton" class="numberButton button" value="6">6</button>
+                    <button id="oneButton" class="numberButton button">1</button>
+                    <button id="twoButton" class="numberButton button" value="2">2</button>
+                    <button id="threeButton" class="numberButton button" value="3">3</button>
+                    <button id="zeroButton" class="numberButton button">0</button>
+                    <button id="pointButton" class="numberButton button" value=".">.</button>
+                </div>
             </div>
             <div id="operatorContainer" class="innerContainer">
                 <button id="addButton" class="operatorButton button">+</button>
