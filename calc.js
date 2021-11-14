@@ -31,18 +31,88 @@ let secondOperand = "";
 
 let operationArray = [];
 
-let equation = displayEquation.textContent;
+let operatorIndex;
 
-equation = "";
+let equation = "";
 
-let result = displayResult.textContent;
+// let result = displayResult.textContent;
 
-result = "";
+let result = "";
 
 let addClicked = false;
 let subClicked = false;
 let multClicked = false;
 let diviClicked = false;
+
+
+
+// Functions
+
+function add(firstOperand, secondOperand) {
+
+    result = Number(firstOperand) + Number(secondOperand);
+    
+}
+
+function subtract(firstOperand, secondOperand) {
+
+    result = Number(firstOperand) - Number(secondOperand);
+    
+}
+
+function multiply(firstOperand, secondOperand) {
+
+    result = Number(firstOperand) * Number(secondOperand);
+    
+}
+
+function divide(firstOperand, secondOperand) {
+    
+    if (secondOperand != 0) {
+
+        result = Number(firstOperand) / Number(secondOperand);
+        
+
+    } else if (secondOperand === 0) {
+
+        return "ERROR!";
+
+    }
+
+}
+
+function operate(firstOperand, secondOperand) {
+
+    if (addClicked === true) {
+
+        add(firstOperand, secondOperand);
+
+    } else if (subClicked === true) {
+
+        subtract(firstOperand, secondOperand);
+
+    } else if (multClicked === true) {
+
+        multiply(firstOperand, secondOperand);
+
+    } else if (diviClicked === true) {
+
+        divide(firstOperand, secondOperand);
+
+    }
+
+    return result;
+
+}
+
+
+function getOperatorIndex(string, operatorString) {
+    operatorIndex = string.indexOf(operatorString);
+    return operatorIndex;
+}
+
+
+// Event Listeners
 
 zeroButton.addEventListener("click", () => {
     
@@ -237,39 +307,151 @@ addButton.addEventListener("click", () => {
     console.log(firstOperand);
     */
     
+    addClicked = true;
+    subClicked = false;
+    multClicked = false;
+    diviClicked = false;
+
     operator = "+";
-    if (firstOperand = "") {
+
+    if (firstOperand == "") {
+
         firstOperand = Number(displayEquation.textContent);
         operationArray[0] = firstOperand;
         operationArray[1] = operator;
+        displayEquation.textContent += " + ";
         console.log(operationArray);
+        console.log(firstOperand);
+
     } else if (firstOperand != "") {
-        displayEquation.textContent
+
+        displayEquation.textContent += " + ";
+
     }
 
 })
 
 subButton.addEventListener("click", () => {
+    /*
     subClicked = true;
     firstOperand = Number(displayEquation.textContent);
     displayEquation.textContent += " - ";
+    */
+    
+    addClicked = false;
+    subClicked = true;
+    multClicked = false;
+    diviClicked = false;
+
+    operator = "-";
+
+    if (firstOperand == "") {
+
+        firstOperand = Number(displayEquation.textContent);
+        operationArray[0] = firstOperand;
+        operationArray[1] = operator;
+        displayEquation.textContent += " - ";
+        console.log(operationArray);
+        console.log(firstOperand);
+
+    } else if (firstOperand != "") {
+
+        displayEquation.textContent += " - ";
+
+    }
+
 })
 
 multButton.addEventListener("click", () => {
+    
+    /*
     multClicked = true;
     firstOperand = Number(displayEquation.textContent);
     displayEquation.textContent += " x ";
+    */
+
+    addClicked = false;
+    subClicked = false;
+    multClicked = true;
+    diviClicked = false;
+
+    operator = "*";
+
+    if (firstOperand == "") {
+
+        firstOperand = Number(displayEquation.textContent);
+        operationArray[0] = firstOperand;
+        operationArray[1] = operator;
+        displayEquation.textContent += " x ";
+        console.log(operationArray);
+        console.log(firstOperand);
+
+    } else if (firstOperand != "") {
+
+        displayEquation.textContent += " x ";
+
+    }
+
 })
 
 diviButton.addEventListener("click", () => {
+
+    /*
     diviClicked = true;
     firstOperand = Number(displayEquation.textContent);
     displayEquation.textContent += " / ";
+    */
+   
+    addClicked = false;
+    subClicked = false;
+    multClicked = false;
+    diviClicked = true;
+
+    operator = "/";
+
+    if (firstOperand == "") {
+
+        firstOperand = Number(displayEquation.textContent);
+        operationArray[0] = firstOperand;
+        operationArray[1] = operator;
+        displayEquation.textContent += " / ";
+        console.log(operationArray);
+        console.log(firstOperand);
+
+    } else if (firstOperand != "") {
+
+        displayEquation.textContent += " / ";
+
+    }
+
 })
 
+
 equButton.addEventListener("click", () => {
+
+    if (addClicked === true) {
+        getOperatorIndex(displayEquation.textContent, "+");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        operationArray[2] = Number(secondOperand);
+    } else if (subClicked === true) {
+        getOperatorIndex(displayEquation.textContent, "-");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        operationArray[2] = secondOperand;
+    } else if (multClicked === true) {
+        getOperatorIndex(displayEquation.textContent, "x");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        operationArray[2] = secondOperand;
+    } else if (diviClicked === true) {
+        getOperatorIndex(displayEquation.textContent, "/");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        operationArray[2] = secondOperand;
+    }
+
     displayEquation.textContent += " = ";
 
+    operate(operationArray[0], operationArray[2]);
+
+    /*
     if (addClicked === true) {
         result = Number(firstOperand) + Number(secondOperand);
     } else if (subClicked === true) {
@@ -279,6 +461,7 @@ equButton.addEventListener("click", () => {
     } else if (diviClicked === true) {
         result = Number(firstOperand) / Number(secondOperand);
     }
+    */
 
     displayResult.textContent = result;
 
@@ -308,11 +491,7 @@ clearButton.addEventListener("click", () => {
     
 })
 
-function operate(firstOperand, operator, secondOperand) {
 
-    return Number(firstOperand) + operator + Number(secondOperand);
-
-}
 
 // To-do
 
@@ -337,6 +516,6 @@ Base functionality
     a. if firstOperand is empty, change its value to the current display content and change operator's value to the clicked operator
     b. if firstOperand isn't empty, change secondOperand's value to the display content after the operator and return the operation
 
-
+push equation string to operationArray
 
 */
