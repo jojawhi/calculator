@@ -23,16 +23,21 @@ const equButton = document.querySelector("#equButton");
 
 
 
-displayEquation.textContent = "";
-displayResult.textContent = "";
-
-
-
 let firstOperand = "";
+
+let operator = "";
 
 let secondOperand = "";
 
-let result = "";
+let operationArray = [];
+
+let equation = displayEquation.textContent;
+
+equation = "";
+
+let result = displayResult.textContent;
+
+result = "";
 
 let addClicked = false;
 let subClicked = false;
@@ -225,10 +230,23 @@ pointButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
+    /*
     addClicked = true;
     firstOperand = Number(displayEquation.textContent);
     displayEquation.textContent += " + ";
     console.log(firstOperand);
+    */
+    
+    operator = "+";
+    if (firstOperand = "") {
+        firstOperand = Number(displayEquation.textContent);
+        operationArray[0] = firstOperand;
+        operationArray[1] = operator;
+        console.log(operationArray);
+    } else if (firstOperand != "") {
+        displayEquation.textContent
+    }
+
 })
 
 subButton.addEventListener("click", () => {
@@ -290,11 +308,35 @@ clearButton.addEventListener("click", () => {
     
 })
 
+function operate(firstOperand, operator, secondOperand) {
+
+    return Number(firstOperand) + operator + Number(secondOperand);
+
+}
+
 // To-do
 
 /*
 - figure out how to allow chaining operators, look into arrays for this
 // RegEx from https://stackoverflow.com/questions/62712250/chaining-multiple-operations-in-a-javascript-calculator
 // let calculation = str.match(/\d+\.\d+|\d+|[^0-9]/g);
+
+*/
+
+/*
+
+New algorithm
+
+Base functionality
+
+1. Create three variables: firstOperand, secondOperand, and operator
+2. Create an empty array, operationArray, to store the 3 variables before running an operation
+3. Create a function, operate(), that takes the array items as arguments to run an equation
+4. Create event listeners for the number and operator buttons that populate the display on click
+5. Create event listeners for the operator buttons that do the following:
+    a. if firstOperand is empty, change its value to the current display content and change operator's value to the clicked operator
+    b. if firstOperand isn't empty, change secondOperand's value to the display content after the operator and return the operation
+
+
 
 */
