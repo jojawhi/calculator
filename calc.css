@@ -9,7 +9,7 @@
     --grey-2: hsl(0, 0%, 30%);
     --grey-3: hsl(0, 0%, 50%);
     --grey-4: hsl(0, 0%, 15%);
-    --grey-5: hsl(0, 0%, 5%);
+    --grey-5: hsl(0, 0%, 2%);
 }
 
 *,
@@ -32,7 +32,7 @@ body,
 
 #calcContainer {
     display: grid;
-    grid-template-columns: 74% 1fr;
+    grid-template-columns: 73% 1fr;
     grid-template-rows: 25% 1fr;
     grid-gap: 0.5rem;
     grid-template-areas: 
@@ -153,10 +153,6 @@ body,
     border-radius: 10px;
 }
 
-.deleteClear {
-    width: 100%;
-}
-
 .numberButton {
     background: var(--grey-1);
     color: var(--blue-1);
@@ -170,6 +166,7 @@ body,
 
 .numberButton:hover,
 .numberButton:focus {
+    background: var(--grey-5);
     text-shadow: 
         0 0 4px var(--white-1),
         0 0 5px var(--blue-1),
@@ -198,6 +195,7 @@ body,
 
 .operatorButton:hover,
 .operatorButton:focus {
+    background: var(--grey-5);
     text-shadow: 
         0 0 4px var(--white-1),
         0 0 5px var(--orange-1),
@@ -211,6 +209,44 @@ body,
     text-shadow: 
         0 0 5px var(--white-1),
         0 0 6px var(--orange-1);
+}
+
+.textButton {
+    background: var(--grey-1);
+    color: var(--orange-1);
+    font-size: 2.5rem;
+    text-shadow: 
+        0 0 2px var(--white-1),
+        0 0 3px var(--orange-1),
+        0 0 30px var(--orange-1);
+    transition: 0.2s;
+}
+
+.textButton:hover,
+.textButton:focus {
+    text-shadow: 
+        0 0 4px var(--white-1),
+        0 0 5px var(--orange-1),
+        0 0 35px var(--orange-1);
+}
+
+.textButton:active {
+    transform: scale(0.95);
+    background: var(--grey-5);
+    box-shadow: 2px -2px 0 var(--grey-3);
+    text-shadow: 
+        0 0 5px var(--white-1),
+        0 0 6px var(--orange-1);
+}
+
+#deleteButton {
+    color: var(--grey-2);
+    text-shadow: none;
+}
+
+.disabled {
+    color: var(--grey-2);
+    text-shadow: none;
 }
 
 #zeroButton {

@@ -35,12 +35,6 @@ let equation = "";
 
 let result = "";
 
-let addClicked = false;
-let subClicked = false;
-let multClicked = false;
-let diviClicked = false;
-
-
 
 // Functions
 
@@ -50,11 +44,13 @@ function add(firstOperand, secondOperand) {
     
 }
 
+
 function subtract(firstOperand, secondOperand) {
 
     result = Number(firstOperand) - Number(secondOperand);
     
 }
+
 
 function multiply(firstOperand, secondOperand) {
 
@@ -62,17 +58,19 @@ function multiply(firstOperand, secondOperand) {
     
 }
 
+
 function divide(firstOperand, secondOperand) {
     
-    if (secondOperand === 0) {
+    if (secondOperand === 0 || secondOperand === "0") {
 
-        result = "ERROR!";
+        result = "NOPE!";
 
     } else if (secondOperand != 0) {
 
         result = Number(firstOperand) / Number(secondOperand);
 
     }
+
 
 }
 
@@ -107,136 +105,67 @@ function getOperatorIndex(string, operatorString) {
 }
 
 
+
 // Event Listeners
 
 addButton.addEventListener("click", () => {
     
     operator = "+";
 
-    if (firstOperand === "") {
+    if (firstOperand === "" && displayResult.textContent === "") {
 
         firstOperand = displayEquation.textContent;
         displayEquation.textContent += " + "
 
-    } else if (firstOperand != "") {
+    } else if (firstOperand === "" && displayResult.textContent != "") {
 
-        getOperatorIndex(displayEquation.textContent, "+");
-        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-        operate(firstOperand, secondOperand, operator);
-        displayResult.textContent = result;
         firstOperand = result;
-        displayEquation.textContent = result;
-        displayEquation.textContent += " + ";
-
-    }
-    
-    /*
-    addClicked = true;
-    firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += " + ";
-    console.log(firstOperand);
-    */
-
-    /*
-    5. Create event listeners for the operator buttons that do the following:
-    //first equation
-    a. assign operator value
-    b. if firstOperand is empty, change its value to the current display content
-    c. if firstOperand isn't empty, change secondOperand's value to the display content after the operator, run operate(), populate the display with the result,
-       assign result value to firstOperand, replace displayEquation content with firstOperand 
-    */
-
-
-    /*   
-    if (firstOperand === "") {
-
-        addClicked = true;
-        subClicked = false;
-        multClicked = false;
-        diviClicked = false;
-        operator = "+";
-
-        firstOperand = Number(displayEquation.textContent);
-        operationArray[0] = firstOperand;
-        operationArray[1] = operator;
-        displayEquation.textContent += " + ";
-        console.log(operationArray);
-        console.log(firstOperand);
+        displayEquation.textContent = `${firstOperand} ${operator} `;
+        displayResult.textContent = "";
 
     } else if (firstOperand != "") {
-        
-        if (addClicked === true) {
+
             getOperatorIndex(displayEquation.textContent, "+");
             secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-            operationArray[2] = Number(secondOperand);
-        } else if (subClicked === true) {
-            getOperatorIndex(displayEquation.textContent, "-");
-            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-            operationArray[2] = secondOperand;
-        } else if (multClicked === true) {
-            getOperatorIndex(displayEquation.textContent, "x");
-            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-            operationArray[2] = secondOperand;
-        } else if (diviClicked === true) {
-            getOperatorIndex(displayEquation.textContent, "/");
-            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-            operationArray[2] = secondOperand;
-        }
-        
-        operate(operationArray[0], operationArray[2]);
-
-        displayResult.textContent = result;
-        firstOperand = result;
-
-        addClicked = true;
-        subClicked = false;
-        multClicked = false;
-        diviClicked = false;
-        operator = "+";
-
-        displayEquation.textContent += " + ";
-    
+            operate(firstOperand, secondOperand, operator);
+            displayResult.textContent = result;
+            firstOperand = result;
+            secondOperand = "";
+            displayEquation.textContent = result;
+            displayEquation.textContent += " + ";
 
     }
-
-    /*
-    slice the displayEquation string for the secondOperand value
-    store the sliced value in secondOperand
-    push secondOperand to the operationArray
-    run the operate function
-    store the result in the firstOperand variable
-    assign the newly clicked operator to the operator variable
-    */
-    
+       
+    console.log(firstOperand, secondOperand, operator);  
 
 })
 
-subButton.addEventListener("click", () => {
-    /*
-    subClicked = true;
-    firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += " - ";
-    */
-    
-    addClicked = false;
-    subClicked = true;
-    multClicked = false;
-    diviClicked = false;
 
+subButton.addEventListener("click", () => {
+    
     operator = "-";
 
-    if (firstOperand == "") {
+    if (firstOperand === "" && displayResult.textContent === "") {
 
-        firstOperand = Number(displayEquation.textContent);
-        operationArray[0] = firstOperand;
-        operationArray[1] = operator;
-        displayEquation.textContent += " - ";
-        console.log(operationArray);
-        console.log(firstOperand);
+        firstOperand = displayEquation.textContent;
+        displayEquation.textContent += " - "
+
+    } else if (firstOperand === "" && displayResult.textContent != "") {
+
+        firstOperand = result;
+        displayEquation.textContent = `${firstOperand} ${operator} `;
+        displayResult.textContent = "";
 
     } else if (firstOperand != "") {
 
-        displayEquation.textContent += " - ";
+            getOperatorIndex(displayEquation.textContent, "-");
+            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            operate(firstOperand, secondOperand, operator);
+            displayResult.textContent = result;
+            firstOperand = result;
+            secondOperand = "";
+            displayEquation.textContent = result;
+            displayEquation.textContent += " - ";
 
     }
 
@@ -244,64 +173,79 @@ subButton.addEventListener("click", () => {
 
 multButton.addEventListener("click", () => {
     
-    /*
-    multClicked = true;
-    firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += " x ";
-    */
-
-    addClicked = false;
-    subClicked = false;
-    multClicked = true;
-    diviClicked = false;
-
     operator = "*";
 
-    if (firstOperand == "") {
+    if (firstOperand === "" && displayResult.textContent === "") {
 
-        firstOperand = Number(displayEquation.textContent);
-        operationArray[0] = firstOperand;
-        operationArray[1] = operator;
-        displayEquation.textContent += " x ";
-        console.log(operationArray);
-        console.log(firstOperand);
+        firstOperand = displayEquation.textContent;
+        displayEquation.textContent += " x "
+
+    } else if (firstOperand === "" && displayResult.textContent != "") {
+
+        firstOperand = result;
+        displayEquation.textContent = `${firstOperand} x `;
+        displayResult.textContent = "";
 
     } else if (firstOperand != "") {
 
-        displayEquation.textContent += " x ";
+            getOperatorIndex(displayEquation.textContent, "x");
+            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            operate(firstOperand, secondOperand, operator);
+            displayResult.textContent = result;
+            firstOperand = result;
+            secondOperand = "";
+            displayEquation.textContent = result;
+            displayEquation.textContent += " x ";
 
     }
+
+    console.log(firstOperand, secondOperand, operator);
 
 })
 
 diviButton.addEventListener("click", () => {
 
-    /*
-    diviClicked = true;
-    firstOperand = Number(displayEquation.textContent);
-    displayEquation.textContent += " / ";
-    */
-   
-    addClicked = false;
-    subClicked = false;
-    multClicked = false;
-    diviClicked = true;
-
     operator = "/";
 
-    if (firstOperand == "") {
+    if (firstOperand === "" && displayResult.textContent === "") {
 
-        firstOperand = Number(displayEquation.textContent);
-        operationArray[0] = firstOperand;
-        operationArray[1] = operator;
-        displayEquation.textContent += " / ";
-        console.log(operationArray);
-        console.log(firstOperand);
+        firstOperand = displayEquation.textContent;
+        displayEquation.textContent += " / "
+
+    } else if (firstOperand === "" && displayResult.textContent != "") {
+
+        firstOperand = result;
+        displayEquation.textContent = `${firstOperand} ${operator} `;
+        displayResult.textContent = "";
 
     } else if (firstOperand != "") {
 
+        getOperatorIndex(displayEquation.textContent, "/");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        displayEquation.textContent = result;
         displayEquation.textContent += " / ";
 
+        /*
+        if (secondOperand != 0 || secondOperand != "0") {
+
+            operate(firstOperand, secondOperand, operator);
+            displayResult.textContent = result;
+            firstOperand = result;
+            displayEquation.textContent = result;
+            displayEquation.textContent += " / ";
+
+        } else if (secondOperand === 0 || secondOperand === "0") {
+
+            result = "NOPE!";
+            displayResult.textContent = result;
+
+        }
+        */
     }
 
 })
@@ -309,6 +253,48 @@ diviButton.addEventListener("click", () => {
 
 equButton.addEventListener("click", () => {
 
+    console.log(firstOperand, secondOperand, operator);
+
+    if (firstOperand === "") {
+
+        result = "ERROR!";
+        displayResult.textContent = result;
+
+        /*
+        firstOperand = displayEquation.textContent;
+        displayEquation.textContent += " =";
+        result = firstOperand;
+        displayResult.textContent = result;
+        */
+
+    } else if (secondOperand === "") {
+
+        result = "ERROR!";
+        displayResult.textContent = result;
+
+    } else if (secondOperand != "") {
+
+        displayEquation.textContent += " =";
+        operate(firstOperand, secondOperand, operator);
+        firstOperand = "";
+        secondOperand = "";
+        operator = "";
+        displayResult.textContent = result;
+
+    }
+
+    
+
+    /*
+    6. Create event listener for the equals button that does the following:
+        a. if firstOperand is empty change its value to the current displayEquation content, add = to displayEquation.textContent, and assign firstOperand to result
+        b. if secondOperand is empty, return error
+        c. if secondOperand is not empty, add = to displayEquation.textContent, run operate(), populate the display with the result, assign result value to firstOperand,
+
+    */
+    
+
+    /*
     if (addClicked === true) {
         getOperatorIndex(displayEquation.textContent, "+");
         secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
@@ -343,6 +329,7 @@ equButton.addEventListener("click", () => {
     }
     */
 
+    /*
     displayResult.textContent = result;
 
     console.log(secondOperand);
@@ -354,20 +341,18 @@ equButton.addEventListener("click", () => {
 
     firstOperand = "";
     secondOperand = "";
+    */
     
 })
 
 clearButton.addEventListener("click", () => {
+    
     displayEquation.textContent = "";
     displayResult.textContent = ""
 
     firstOperand = "";
     secondOperand = "";
-
-    addClicked = false;
-    subClicked = false;
-    multClicked = false;
-    diviClicked = false;
+    operator = "";
     
 })
 
@@ -584,6 +569,9 @@ Base functionality
     a. if firstOperand is empty, change its value to the current display content and change operator's value to the clicked operator
     b. if firstOperand isn't empty, change secondOperand's value to the display content after the operator, run operate(), populate the display with the result,
        assign result value to firstOperand, replace displayEquation content with firstOperand
-6. 
+6. Create event listener for the equals button that does the following:
+    a. if firstOperand is empty change its value to the current displayEquation content, add = to displayEquation.textContent, and assign firstOperand to result
+    b. if secondOperand is empty, return error
+    c. if secondOperand is not empty, add = to displayEquation.textContent, run operate(), populate the display with the result, assign result value to firstOperand,
 
 */
