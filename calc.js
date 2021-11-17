@@ -68,14 +68,13 @@ function multiply(firstOperand, secondOperand) {
 
 function divide(firstOperand, secondOperand) {
     
-    if (secondOperand != 0) {
+    if (secondOperand === 0) {
+
+        result = "ERROR!";
+
+    } else if (secondOperand != 0) {
 
         result = Number(firstOperand) / Number(secondOperand);
-        
-
-    } else if (secondOperand === 0) {
-
-        return "ERROR!";
 
     }
 
@@ -201,11 +200,13 @@ fourButton.addEventListener("click", () => {
 
 fiveButton.addEventListener("click", () => {
     
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "5";
@@ -306,15 +307,14 @@ addButton.addEventListener("click", () => {
     displayEquation.textContent += " + ";
     console.log(firstOperand);
     */
-    
-    addClicked = true;
-    subClicked = false;
-    multClicked = false;
-    diviClicked = false;
-
-    operator = "+";
 
     if (firstOperand == "") {
+
+        addClicked = true;
+        subClicked = false;
+        multClicked = false;
+        diviClicked = false;
+        operator = "+";
 
         firstOperand = Number(displayEquation.textContent);
         operationArray[0] = firstOperand;
@@ -325,7 +325,47 @@ addButton.addEventListener("click", () => {
 
     } else if (firstOperand != "") {
 
+        /*
+        slice the displayEquation string for the secondOperand value
+        store the sliced value in secondOperand
+        push secondOperand to the operationArray
+        run the operate function
+        store the result in the firstOperand variable
+        assign the newly clicked operator to the operator variable
+
+        */
+        
+        if (addClicked === true) {
+            getOperatorIndex(displayEquation.textContent, "+");
+            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            operationArray[2] = Number(secondOperand);
+        } else if (subClicked === true) {
+            getOperatorIndex(displayEquation.textContent, "-");
+            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            operationArray[2] = secondOperand;
+        } else if (multClicked === true) {
+            getOperatorIndex(displayEquation.textContent, "x");
+            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            operationArray[2] = secondOperand;
+        } else if (diviClicked === true) {
+            getOperatorIndex(displayEquation.textContent, "/");
+            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            operationArray[2] = secondOperand;
+        }
+        
+        operate(operationArray[0], operationArray[2]);
+
+        displayResult.textContent = result;
+        firstOperand = result;
+
+        addClicked = true;
+        subClicked = false;
+        multClicked = false;
+        diviClicked = false;
+        operator = "+";
+
         displayEquation.textContent += " + ";
+    
 
     }
 

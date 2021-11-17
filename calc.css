@@ -32,7 +32,7 @@ body,
 
 #calcContainer {
     display: grid;
-    grid-template-columns: 70% 1fr;
+    grid-template-columns: 74% 1fr;
     grid-template-rows: 25% 1fr;
     grid-gap: 0.5rem;
     grid-template-areas: 
@@ -283,6 +283,30 @@ body,
 
 #equButton {
     font-size: 3.5rem;
+}
+
+#githubButton a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: transparent;
+}
+
+#githubButton a img {
+    border-radius: 50%;
+    background: transparent;
+    transition: 0.2s;
+}
+
+#githubButton a img:hover {
+    box-shadow: 
+    0 0 4px var(--white-1),
+    0 0 6px var(--blue-1),
+    0 0 3px var(--orange-1);
 }
 
 

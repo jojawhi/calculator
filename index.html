@@ -17,29 +17,32 @@
             </div>
             <div id="mainButtonContainer" class="innerContainer">
                 <div id="deleteClearContainer">
-                    <button id="deleteButton" class="operatorButton button deleteClear">DEL</button>
-                    <button id="clearButton" class="operatorButton button deleteClear">CLR</button>
+                    <button id="deleteButton" class="operatorButton button deleteClear" data-key="8">DEL</button>
+                    <button id="clearButton" class="operatorButton button deleteClear" value ="clear" data-key="8">CLR</button>
                 </div>
                 <div id="numberButtonContainer">
-                    <button id="sevenButton" class="numberButton button" value="7">7</button>
-                    <button id="eightButton" class="numberButton button" value="8">8</button>
-                    <button id="nineButton" class="numberButton button" value="9">9</button>
-                    <button id="fourButton" class="numberButton button" value="4">4</button>
-                    <button id="fiveButton" class="numberButton button" value="5">5</button>
-                    <button id="sixButton" class="numberButton button" value="6">6</button>
-                    <button id="oneButton" class="numberButton button">1</button>
-                    <button id="twoButton" class="numberButton button" value="2">2</button>
-                    <button id="threeButton" class="numberButton button" value="3">3</button>
-                    <button id="zeroButton" class="numberButton button">0</button>
-                    <button id="pointButton" class="numberButton button" value=".">.</button>
+                    <button id="sevenButton" class="numberButton button" value="7" data-key="55">7</button>
+                    <button id="eightButton" class="numberButton button" value="8" data-key="56">8</button>
+                    <button id="nineButton" class="numberButton button" value="9" data-key="57">9</button>
+                    <button id="fourButton" class="numberButton button" value="4" data-key="52">4</button>
+                    <button id="fiveButton" class="numberButton button" value="5" data-key="53">5</button>
+                    <button id="sixButton" class="numberButton button" value="6" data-key="54">6</button>
+                    <button id="oneButton" class="numberButton button" value="1" data-key="49">1</button>
+                    <button id="twoButton" class="numberButton button" value="2" data-key="50">2</button>
+                    <button id="threeButton" class="numberButton button" value="3" data-key="51">3</button>
+                    <button id="zeroButton" class="numberButton button" value="0" data-key="48">0</button>
+                    <button id="pointButton" class="numberButton button" value="." data-key="190">.</button>
+                    <button id="githubButton" class="numberButton button" value="." data-key="190">
+                        <a href="https://github.com/jojawhi/calculator" target="_blank" rel="noopener noreferrer"><img src="images/github-white2.svg" alt="github logo"></a>
+                    </button>
                 </div>
             </div>
             <div id="operatorContainer" class="innerContainer">
-                <button id="addButton" class="operatorButton button">+</button>
-                <button id="subButton" class="operatorButton button">-</button>
-                <button id="multButton" class="operatorButton button">x</button>
-                <button id="diviButton" class="operatorButton button">/</button>
-                <button id="equButton" class="operatorButton button">=</button>
+                <button id="addButton" class="operatorButton button" value="+" data-key="61">+</button>
+                <button id="subButton" class="operatorButton button" value="-" data-key="173">-</button>
+                <button id="multButton" class="operatorButton button" value="*" data-key="88">x</button>
+                <button id="diviButton" class="operatorButton button" value="/" data-key="68">/</button>
+                <button id="equButton" class="operatorButton button" value="=" data-key="69">=</button>
             </div>
         </div>
     </div>
