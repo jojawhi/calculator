@@ -109,7 +109,7 @@ body,
         "seven eight nine"
         "four  five  six"
         "one   two   three"
-        ".     zero  point";
+        "git   zero  point";
     grid-gap: 5px;
     grid-area: numbers;
     height: 80%;
@@ -285,26 +285,24 @@ body,
     font-size: 3.5rem;
 }
 
-#githubButton a {
+#githubButton {
+    grid-area: git;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40%;
-    width: 40%;
-    margin: 0 auto;
-    border-radius: 50%;
-    background: transparent;
 }
 
-#githubButton a img {
+#githubButton img {
+    height: 45%;
+    width: 45%;
     border-radius: 50%;
     background: transparent;
     transition: 0.2s;
 }
 
-#githubButton a img:hover {
+#githubButton img:hover {
     box-shadow: 
-    0 0 4px var(--white-1),
+    0 0 6px var(--white-1),
     0 0 6px var(--blue-1),
     0 0 3px var(--orange-1);
 }
