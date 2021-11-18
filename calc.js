@@ -84,7 +84,7 @@ function operate(firstOperand, secondOperand, operator) {
 
         subtract(firstOperand, secondOperand);
 
-    } else if (operator === "*") {
+    } else if (operator === "x") {
 
         multiply(firstOperand, secondOperand);
 
@@ -93,6 +93,8 @@ function operate(firstOperand, secondOperand, operator) {
         divide(firstOperand, secondOperand);
 
     }
+
+    operator = "";
 
     return result;
 
@@ -109,24 +111,39 @@ function getOperatorIndex(string, operatorString) {
 // Event Listeners
 
 addButton.addEventListener("click", () => {
-    
-    operator = "+";
 
     if (firstOperand === "" && displayResult.textContent === "") {
 
         firstOperand = displayEquation.textContent;
+        operator = "+";
         displayEquation.textContent += " + "
 
     } else if (firstOperand === "" && displayResult.textContent != "") {
 
         firstOperand = result;
+        operator = "+";
         displayEquation.textContent = `${firstOperand} ${operator} `;
         displayResult.textContent = "";
 
-    } else if (firstOperand != "") {
+    } else if (firstOperand != "" && operator != "") {
+
+        getOperatorIndex(displayEquation.textContent, `${operator}`);
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        operator = "+";
+        displayEquation.textContent = `${firstOperand} ${operator} `;
+
+    } else if (firstOperand != "" && secondOperand === "") {
+
+            operator = "+";
 
             getOperatorIndex(displayEquation.textContent, "+");
             secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+            
             operate(firstOperand, secondOperand, operator);
             displayResult.textContent = result;
             firstOperand = result;
@@ -142,60 +159,90 @@ addButton.addEventListener("click", () => {
 
 
 subButton.addEventListener("click", () => {
-    
-    operator = "-";
 
     if (firstOperand === "" && displayResult.textContent === "") {
 
         firstOperand = displayEquation.textContent;
+        operator = "-";
         displayEquation.textContent += " - "
 
     } else if (firstOperand === "" && displayResult.textContent != "") {
 
         firstOperand = result;
+        operator = "-";
         displayEquation.textContent = `${firstOperand} ${operator} `;
         displayResult.textContent = "";
 
-    } else if (firstOperand != "") {
+    } else if (firstOperand != "" && operator != "") {
+        
+        getOperatorIndex(displayEquation.textContent, `${operator}`);
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        operator = "-";
+        displayEquation.textContent = `${firstOperand} ${operator} `;
 
-            getOperatorIndex(displayEquation.textContent, "-");
-            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-            operate(firstOperand, secondOperand, operator);
-            displayResult.textContent = result;
-            firstOperand = result;
-            secondOperand = "";
-            displayEquation.textContent = result;
-            displayEquation.textContent += " - ";
+    } else if (firstOperand != "" && secondOperand === "") {
+
+        operator = "-";
+        
+        getOperatorIndex(displayEquation.textContent, "-");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        displayEquation.textContent = result;
+        displayEquation.textContent += " - ";
 
     }
+
+    console.log(firstOperand, secondOperand, operator);  
 
 })
 
 multButton.addEventListener("click", () => {
-    
-    operator = "*";
 
     if (firstOperand === "" && displayResult.textContent === "") {
 
         firstOperand = displayEquation.textContent;
+        operator = "*";
         displayEquation.textContent += " x "
 
     } else if (firstOperand === "" && displayResult.textContent != "") {
 
         firstOperand = result;
-        displayEquation.textContent = `${firstOperand} x `;
+        operator = "x";
+        displayEquation.textContent = `${firstOperand} ${operator} `;
         displayResult.textContent = "";
 
-    } else if (firstOperand != "") {
+    } else if (firstOperand != "" && operator != "") {
+        
+        getOperatorIndex(displayEquation.textContent, `${operator}`);
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        operator = "x";
+        displayEquation.textContent = `${firstOperand} x `;
 
-            getOperatorIndex(displayEquation.textContent, "x");
-            secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-            operate(firstOperand, secondOperand, operator);
-            displayResult.textContent = result;
-            firstOperand = result;
-            secondOperand = "";
-            displayEquation.textContent = result;
-            displayEquation.textContent += " x ";
+    } else if (firstOperand != "" && secondOperand === "") {
+
+        operator = "x";
+        
+        getOperatorIndex(displayEquation.textContent, "x");
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        displayEquation.textContent = result;
+        displayEquation.textContent += " x ";
 
     }
 
@@ -205,27 +252,43 @@ multButton.addEventListener("click", () => {
 
 diviButton.addEventListener("click", () => {
 
-    operator = "/";
-
     if (firstOperand === "" && displayResult.textContent === "") {
 
         firstOperand = displayEquation.textContent;
+        operator = "/";
         displayEquation.textContent += " / "
 
     } else if (firstOperand === "" && displayResult.textContent != "") {
 
         firstOperand = result;
+        operator = "/";
         displayEquation.textContent = `${firstOperand} ${operator} `;
         displayResult.textContent = "";
 
-    } else if (firstOperand != "") {
+    } else if (firstOperand != "" && operator != "") {
+        
+        getOperatorIndex(displayEquation.textContent, `${operator}`);
+        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
+        
+        operate(firstOperand, secondOperand, operator);
+        displayResult.textContent = result;
+        firstOperand = result;
+        secondOperand = "";
+        operator = "/";
+        displayEquation.textContent = `${firstOperand} ${operator} `;
 
+    } else if (firstOperand != "" && secondOperand === "") {
+
+        operator = "/";
+        
         getOperatorIndex(displayEquation.textContent, "/");
         secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
 
         operate(firstOperand, secondOperand, operator);
+
         displayResult.textContent = result;
         firstOperand = result;
+
         secondOperand = "";
         displayEquation.textContent = result;
         displayEquation.textContent += " / ";
@@ -282,68 +345,9 @@ equButton.addEventListener("click", () => {
         displayResult.textContent = result;
 
     }
-
-    
-
-    /*
-    6. Create event listener for the equals button that does the following:
-        a. if firstOperand is empty change its value to the current displayEquation content, add = to displayEquation.textContent, and assign firstOperand to result
-        b. if secondOperand is empty, return error
-        c. if secondOperand is not empty, add = to displayEquation.textContent, run operate(), populate the display with the result, assign result value to firstOperand,
-
-    */
-    
-
-    /*
-    if (addClicked === true) {
-        getOperatorIndex(displayEquation.textContent, "+");
-        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-        operationArray[2] = Number(secondOperand);
-    } else if (subClicked === true) {
-        getOperatorIndex(displayEquation.textContent, "-");
-        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-        operationArray[2] = secondOperand;
-    } else if (multClicked === true) {
-        getOperatorIndex(displayEquation.textContent, "x");
-        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-        operationArray[2] = secondOperand;
-    } else if (diviClicked === true) {
-        getOperatorIndex(displayEquation.textContent, "/");
-        secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
-        operationArray[2] = secondOperand;
-    }
-
-    displayEquation.textContent += " = ";
-
-    operate(operationArray[0], operationArray[2]);
-
-    /*
-    if (addClicked === true) {
-        result = Number(firstOperand) + Number(secondOperand);
-    } else if (subClicked === true) {
-        result = Number(firstOperand) - Number(secondOperand);
-    } else if (multClicked === true) {
-        result = Number(firstOperand) * Number(secondOperand);
-    } else if (diviClicked === true) {
-        result = Number(firstOperand) / Number(secondOperand);
-    }
-    */
-
-    /*
-    displayResult.textContent = result;
-
-    console.log(secondOperand);
-
-    addClicked = false;
-    subClicked = false;
-    multClicked = false;
-    diviClicked = false;
-
-    firstOperand = "";
-    secondOperand = "";
-    */
     
 })
+
 
 clearButton.addEventListener("click", () => {
     
@@ -353,16 +357,20 @@ clearButton.addEventListener("click", () => {
     firstOperand = "";
     secondOperand = "";
     operator = "";
+    result = "";
     
 })
 
+
 zeroButton.addEventListener("click", () => {
     
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "0";
@@ -375,11 +383,13 @@ zeroButton.addEventListener("click", () => {
 
 oneButton.addEventListener("click", () => {
 
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "1";
@@ -391,12 +401,14 @@ oneButton.addEventListener("click", () => {
 });
 
 twoButton.addEventListener("click", () => {
-
+    
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "2";
@@ -408,12 +420,14 @@ twoButton.addEventListener("click", () => {
 });
 
 threeButton.addEventListener("click", () => {
-
+    
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "3";
@@ -425,12 +439,13 @@ threeButton.addEventListener("click", () => {
 });
 
 fourButton.addEventListener("click", () => {
-    
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "4";
@@ -462,11 +477,13 @@ fiveButton.addEventListener("click", () => {
 
 sixButton.addEventListener("click", () => {
     
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "6";
@@ -479,11 +496,13 @@ sixButton.addEventListener("click", () => {
 
 sevenButton.addEventListener("click", () => {
     
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "7";
@@ -496,11 +515,13 @@ sevenButton.addEventListener("click", () => {
 
 eightButton.addEventListener("click", () => {
     
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "8";
@@ -513,11 +534,13 @@ eightButton.addEventListener("click", () => {
 
 nineButton.addEventListener("click", () => {
     
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += "9";
@@ -529,11 +552,14 @@ nineButton.addEventListener("click", () => {
 });
 
 pointButton.addEventListener("click", () => {
+    
+    /*
     if (displayResult.textContent != "") {
         result = "";
         displayResult.textContent = "";
         displayEquation.textContent = "";
     }
+    */
     
     if (firstOperand != "") {
         secondOperand += ".";
