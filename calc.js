@@ -43,6 +43,8 @@ let equation = "";
 
 let result = "";
 
+let roundedResult = roundResult(result, 10);
+
 
 // Functions
 
@@ -114,6 +116,9 @@ function getOperatorIndex(string, operatorString) {
     return operatorIndex;
 }
 
+function roundResult(number, places) {
+    return parseFloat(Math.round(number + "e" + places) + "e-" + places);
+}
 
 
 // Event Listeners
@@ -128,7 +133,7 @@ addButton.addEventListener("click", () => {
 
     } else if (firstOperand === "" && displayResult.textContent != "") {
 
-        firstOperand = result;
+        firstOperand = roundedResult;
         operator = "+";
         displayEquation.textContent = `${firstOperand} ${operator} `;
         displayResult.textContent = "";
@@ -139,8 +144,8 @@ addButton.addEventListener("click", () => {
         secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
         
         operate(firstOperand, secondOperand, operator);
-        displayResult.textContent = result;
-        firstOperand = result;
+        displayResult.textContent = roundedResult;
+        firstOperand = roundedResult;
         secondOperand = "";
         operator = "+";
         displayEquation.textContent = `${firstOperand} ${operator} `;
@@ -153,10 +158,10 @@ addButton.addEventListener("click", () => {
             secondOperand = displayEquation.textContent.slice((operatorIndex + 2));
             
             operate(firstOperand, secondOperand, operator);
-            displayResult.textContent = result;
-            firstOperand = result;
+            displayResult.textContent = roundedResult;
+            firstOperand = roundedResult;
             secondOperand = "";
-            displayEquation.textContent = result;
+            displayEquation.textContent = roundedResult;
             displayEquation.textContent += " + ";
 
     }
@@ -613,9 +618,9 @@ pointButton.addEventListener("click", () => {
 // To-do
 
 /*
-- figure out how to allow chaining operators, look into arrays for this
-// RegEx from https://stackoverflow.com/questions/62712250/chaining-multiple-operations-in-a-javascript-calculator
-// let calculation = str.match(/\d+\.\d+|\d+|[^0-9]/g);
+
+- make roundResult() work
+- fix formatting of display for long numbers
 
 */
 
