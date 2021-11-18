@@ -13,12 +13,20 @@ const eightButton = document.querySelector("#eightButton");
 const nineButton = document.querySelector("#nineButton");
 const pointButton = document.querySelector("#pointButton");
 
+const deleteButton = document.querySelector("#deleteButton");
 const clearButton = document.querySelector("#clearButton");
 const addButton = document.querySelector("#addButton");
 const subButton = document.querySelector("#subButton");
 const multButton = document.querySelector("#multButton");
 const diviButton = document.querySelector("#diviButton");
 const equButton = document.querySelector("#equButton");
+
+
+//Keystroke listener solution from https://github.com/mrbuddh4/calculator
+window.addEventListener('keydown', function(e){
+    const key = document.querySelector(`button[data-key='${e.keyCode}']`);
+    key.click();
+});
 
 
 let firstOperand = "";
@@ -359,6 +367,37 @@ clearButton.addEventListener("click", () => {
     operator = "";
     result = "";
     
+})
+
+deleteButton.addEventListener("click", () => {
+
+    let operatorArray = ["+", "-", "x", "/"];
+
+    for (i = 0; i < operatorArray.length; i++) {
+
+        getOperatorIndex(displayEquation.textContent, operatorArray[i]);
+
+        if (operatorIndex > -1) { break; }
+
+    }
+
+    if (operatorIndex === -1) {
+
+        displayEquation.textContent = displayEquation.textContent.slice(0, (displayEquation.textContent.length - 1));
+        firstOperand = "";
+
+    } else if (operatorIndex > -1 && operatorIndex == (displayEquation.textContent.length - 2)) {
+
+        displayEquation.textContent = displayEquation.textContent.slice(0, (displayEquation.textContent.length - 3));
+        operator = "";
+        firstOperand = "";
+
+    } else if (operatorIndex > -1 && operatorIndex < (displayEquation.textContent.length - 2)) {
+
+        displayEquation.textContent = displayEquation.textContent.slice(0, (displayEquation.textContent.length - 1));
+        secondOperand = "";
+    }
+
 })
 
 

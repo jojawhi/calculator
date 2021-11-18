@@ -239,16 +239,6 @@ body,
         0 0 6px var(--orange-1);
 }
 
-#deleteButton {
-    color: var(--grey-2);
-    text-shadow: none;
-}
-
-.disabled {
-    color: var(--grey-2);
-    text-shadow: none;
-}
-
 #zeroButton {
     grid-area: zero;
 }
