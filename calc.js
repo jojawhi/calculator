@@ -209,7 +209,7 @@ multButton.addEventListener("click", () => {
     if (firstOperand === "" && displayResult.textContent === "") {
 
         firstOperand = displayEquation.textContent;
-        operator = "*";
+        operator = "x";
         displayEquation.textContent += " x "
 
     } else if (firstOperand === "" && displayResult.textContent != "") {
@@ -330,7 +330,7 @@ equButton.addEventListener("click", () => {
         displayResult.textContent = result;
         */
 
-    } else if (secondOperand === "") {
+    } else if (operator != "" && secondOperand === "") {
 
         result = "ERROR!";
         displayResult.textContent = result;
