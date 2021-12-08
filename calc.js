@@ -24,8 +24,11 @@ const equButton = document.querySelector("#equButton");
 
 //Keystroke listener solution from https://github.com/mrbuddh4/calculator
 window.addEventListener('keydown', function(e){
-    const key = document.querySelector(`button[data-key='${e.keyCode}']`);
-    key.click();
+    const key = document.querySelector(`button[data-key='${e.key}']`); // keyCode property is deprecated
+
+    if (key) { // Fix null error when loading app for first time
+        key.click();
+    }
 });
 
 
