@@ -1,17 +1,14 @@
 const displayContainer = document.querySelector("#displayContainer");
 const displayEquation = document.querySelector("#displayEquation");
 const displayResult = document.querySelector("#displayResult");
-const zeroButton = document.querySelector("#zeroButton");
-const oneButton = document.querySelector("#oneButton");
-const twoButton = document.querySelector("#twoButton");
-const threeButton = document.querySelector("#threeButton");
-const fourButton = document.querySelector("#fourButton");
-const fiveButton = document.querySelector("#fiveButton");
-const sixButton = document.querySelector("#sixButton");
-const sevenButton = document.querySelector("#sevenButton");
-const eightButton = document.querySelector("#eightButton");
-const nineButton = document.querySelector("#nineButton");
-const pointButton = document.querySelector("#pointButton");
+
+// Map all numeric inputs
+const numberButtonElements = document.querySelectorAll('.numberButton[data-key]')
+let numberButtons = []
+for (const buttonElement of numberButtonElements) {
+    const value = buttonElement.getAttribute('value')
+    numberButtons[value] = buttonElement
+}
 
 const deleteButton = document.querySelector("#deleteButton");
 const clearButton = document.querySelector("#clearButton");
@@ -24,8 +21,11 @@ const equButton = document.querySelector("#equButton");
 
 //Keystroke listener solution from https://github.com/mrbuddh4/calculator
 window.addEventListener('keydown', function(e){
-    const key = document.querySelector(`button[data-key='${e.keyCode}']`);
-    key.click();
+    const key = document.querySelector(`button[data-key='${e.key}']`); // keyCode property is deprecated
+
+    if (key) { // Fix null error when loading app for first time
+        key.click();
+    }
 });
 
 
@@ -405,215 +405,19 @@ deleteButton.addEventListener("click", () => {
 
 })
 
+// This is perfectly loop-able!
+for (const value in numberButtons) {
+    const element = numberButtons[value]
 
-zeroButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "0";
-        displayEquation.textContent += "0";
-    } else {
-        displayEquation.textContent += "0";
-    }
-    
-});
-
-oneButton.addEventListener("click", () => {
-
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "1";
-        displayEquation.textContent += "1";
-    } else {
-        displayEquation.textContent += "1";
-    }
- 
-});
-
-twoButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "2";
-        displayEquation.textContent += "2";
-    } else {
-        displayEquation.textContent += "2";
-    }
-
-});
-
-threeButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "3";
-        displayEquation.textContent += "3";
-    } else {
-        displayEquation.textContent += "3";
-    }
-
-});
-
-fourButton.addEventListener("click", () => {
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "4";
-        displayEquation.textContent += "4";
-    } else {
-        displayEquation.textContent += "4";
-    }
-
-});
-
-fiveButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "5";
-        displayEquation.textContent += "5";
-    } else {
-        displayEquation.textContent += "5";
-    }
-
-});
-
-sixButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "6";
-        displayEquation.textContent += "6";
-    } else {
-        displayEquation.textContent += "6";
-    }
-
-});
-
-sevenButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "7";
-        displayEquation.textContent += "7";
-    } else {
-        displayEquation.textContent += "7";
-    }
-
-});
-
-eightButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "8";
-        displayEquation.textContent += "8";
-    } else {
-        displayEquation.textContent += "8";
-    }
-
-});
-
-nineButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += "9";
-        displayEquation.textContent += "9";
-    } else {
-        displayEquation.textContent += "9";
-    }
-
-});
-
-pointButton.addEventListener("click", () => {
-    
-    /*
-    if (displayResult.textContent != "") {
-        result = "";
-        displayResult.textContent = "";
-        displayEquation.textContent = "";
-    }
-    */
-    
-    if (firstOperand != "") {
-        secondOperand += ".";
-        displayEquation.textContent += ".";
-    } else {
-        displayEquation.textContent += ".";
-    }
-});
-
-
+    element.addEventListener('click', () => {
+        if (firstOperand !== '') {
+            secondOperand += value;
+            displayEquation.textContent += value;
+        } else {
+            displayEquation.textContent += value;
+        }
+    })
+}
 
 // To-do
 
